@@ -10,8 +10,10 @@ let smallestPerfectSquare = [];
 
 let prefectSquares = [];
 
-//findPerfectSquare(987654321);
+findPerfectSquare(987654321);
 //findPerfectSquare(123456789);
+// prefect squares: 139854276,152843769,157326849,215384976,245893761,254817369,326597184,361874529,375468129,382945761,385297641,412739856,523814769,529874361,537219684,549386721,587432169,589324176,597362481,615387249,627953481,653927184,672935481,697435281,714653289,735982641,743816529,842973156,847159236,923187456
+
 //findPerfectSquare(1234);
 //carefullyIncreaseNumber();
 
@@ -53,14 +55,14 @@ function findPermutations(n) {
 
 		if (arrayOfNumbers.length === 0) {
 			const potentialPerfectSquare = numberBuilder.join('');
-			console.log(`Built the number: ${potentialPerfectSquare}  - value of arrayOfNumbers.length is ${arrayOfNumbers.length}`);
+			//console.log(`Built the number: ${potentialPerfectSquare}  - value of arrayOfNumbers.length is ${arrayOfNumbers.length}`);
 			
 			// test for prefect square
-			// if (testForPerfectSquare(potentialPerfectSquare)) {
-			// 	console.log(`I found a perfect square: ${potentialPerfectSquare}`);
-			// 	prefectSquares.push(potentialPerfectSquare);
-			// 	//break;
-			// }
+			if (testForPerfectSquare(potentialPerfectSquare)) {
+				console.log(`I found a perfect square: ${potentialPerfectSquare}`);
+				prefectSquares.push(potentialPerfectSquare);
+				//break;
+			}
 
 		}
 		findPermutations(arrayOfNumbers.join('')); // can I put this in an else?
@@ -97,18 +99,39 @@ function testForPerfectSquare(p) {
 
 
 
-const testNumbers = [1234, 1234321, 1934520, 123456789, 111111];
-//const testNumbers = [601314, 1234567890];
+// const testNumbers = [1234, 1234321, 1934520, 123456789, 111111];
+// //const testNumbers = [601314, 1234567890];
 
-for (let i = 0; i < testNumbers.length; i++) {
-    console.log(`\n\nthe number is ${testNumbers[i]}`)
-    if (doesThisNumberHaveRepeatedDigits(testNumbers[i]) === true) {
-        console.log(`${testNumbers[i]} has repeat digits.  :((((((((((((((((`);
-    } else {
-        console.log(`${testNumbers[i]} does not have repeat digits!  YAAAYYY!`);
-    }
+// for (let i = 0; i < testNumbers.length; i++) {
+//     console.log(`\n\nthe number is ${testNumbers[i]}`)
+//     if (doesThisNumberHaveRepeatedDigits(testNumbers[i]) === true) {
+//         console.log(`${testNumbers[i]} has repeat digits.  :((((((((((((((((`);
+//     } else {
+//         console.log(`${testNumbers[i]} does not have repeat digits!  YAAAYYY!`);
+//     }
 
-}
+// }
+
+// for (let i = 123456789; i < 987654321; i++) {
+// 	if (doesThisNumberHaveRepeatedDigits(i) === false) {
+// 		if (testForPerfectSquare(i)) {
+// 			console.log(`Smallest perfect square: ${i} (square of: ${Math.sqrt(i)})`);
+// 			break;
+// 		}
+// 	}
+// }
+// // 139854276 (square of: 11826)
+
+
+// for (let i = 987654321; i > 123456789; i--) {
+// 	if (doesThisNumberHaveRepeatedDigits(i) === false) {
+// 		if (testForPerfectSquare(i)) {
+// 			console.log(`Largest perfect square: ${i} (square of: ${Math.sqrt(i)})`);
+// 			break;
+// 		}
+// 	}
+// }
+// 923187456 (square of: 30384)
 
 
 function doesThisNumberHaveRepeatedDigits(n) {
@@ -119,7 +142,7 @@ function doesThisNumberHaveRepeatedDigits(n) {
     for (let currentPosition = 0; currentPosition < lastPositionToCheck; currentPosition++) {
         const currentDigit = numberAsString.charAt(currentPosition);
         const isThisARepeatDigit = numberAsString.indexOf(currentDigit, currentPosition + 1);
-        console.log(`currentPosition is ${currentPosition}, currentDigit is ${currentDigit}, and is it found anywhere? ${isThisARepeatDigit}`);
+        //console.log(`currentPosition is ${currentPosition}, currentDigit is ${currentDigit}, and is it found anywhere? ${isThisARepeatDigit}`);
 
         if (isThisARepeatDigit > 0) {
             return true;
@@ -131,4 +154,17 @@ function doesThisNumberHaveRepeatedDigits(n) {
 
 
 
+/*
+ ==== POTENTIAL ANSWERS ====
+
+Smallest: 
+139854276
+139854276
+
+Biggest: 
+923187456
+923187456
+
+
+*/
 
