@@ -4,7 +4,8 @@
 // how can we ensure the ordering??  it's just a coincidence at this point.
 // add callback function parameter to findPermutations
 
-method1();
+//method1();
+method3();
 
 let numberBuilder = [];
 let largestPerfectSquare = [];   // decreasing numbers that include all digits
@@ -98,7 +99,27 @@ function testForPerfectSquare(p) {
 }
 
 
+// Find the roots first, and then check if the square contains every digit from 1-9
+function method3() {
 
+    let foundPerfectSquare = false;
+    const smallestRoot = Math.sqrt(123456789);
+    let testRoot = Math.floor(smallestRoot);
+    let testSquare;
+
+    while(foundPerfectSquare === false) {
+        testRoot++;
+        testSquare = testRoot * testRoot;
+        //console.log(`the test is: ${testRoot}, the square is: ${testSquare}`)
+        if (doesThisNumberHaveRepeatedDigits(testSquare) === false) {
+            foundPerfectSquare = true;
+        }
+
+    }
+
+    console.log(`I think ${testSquare} is the smallest perfect square with all the numbers from 1 to 9`);
+
+}
 
 
 
@@ -175,6 +196,7 @@ function doesThisNumberHaveRepeatedDigits(n) {
  ==== POTENTIAL ANSWERS ====
 
 Smallest: 
+139854276
 139854276
 139854276
 
