@@ -4,17 +4,17 @@
 // how can we ensure the ordering??  it's just a coincidence at this point.
 // add callback function parameter to findPermutations
 
+method1();
+
 let numberBuilder = [];
 let largestPerfectSquare = [];   // decreasing numbers that include all digits
 let smallestPerfectSquare = [];
-
 let prefectSquares = [];
 
-findPerfectSquare(987654321);
+//findPerfectSquare(987654321);
 //findPerfectSquare(123456789);
-// prefect squares: 139854276,152843769,157326849,215384976,245893761,254817369,326597184,361874529,375468129,382945761,385297641,412739856,523814769,529874361,537219684,549386721,587432169,589324176,597362481,615387249,627953481,653927184,672935481,697435281,714653289,735982641,743816529,842973156,847159236,923187456
-
 //findPerfectSquare(1234);
+
 //carefullyIncreaseNumber();
 
 function findPerfectSquare(startingNumber) {    
@@ -99,8 +99,49 @@ function testForPerfectSquare(p) {
 
 
 
+
+
+
+
+// Brute force at it's finest!
+// To find the smalled perfect square check all numbers greater than 123456789 one by one, first to see if they contain every digit, and then to see if they are a perfect square
+// Use the same method to find the largest perfect square, starting at 987654321 and decreasing one at a time.
+function method1() {
+
+    let smallestPerfectSquare;
+    let largestPerfectSquare;
+
+    for (let i = 123456789; i < 987654321; i++) {
+        if (doesThisNumberHaveRepeatedDigits(i) === false) {
+            if (testForPerfectSquare(i)) {
+                smallestPerfectSquare = i;
+                break;
+            }
+        }
+    }
+
+    for (let i = 987654321; i > 123456789; i--) {
+        if (doesThisNumberHaveRepeatedDigits(i) === false) {
+            if (testForPerfectSquare(i)) {
+                largestPerfectSquare = i;
+                break;
+            }
+        }
+    }
+
+    if (smallestPerfectSquare) {
+        console.log(`The smallest prefect square is ${smallestPerfectSquare} (which is a square of ${Math.sqrt(smallestPerfectSquare)}).`); 
+        console.log(`The largest perfect square is ${largestPerfectSquare} (which is a square of ${Math.sqrt(largestPerfectSquare)}).`);
+    } else {
+        console.log(`Could not find any perfect squares `)
+    }
+}
+
+
+
+// Testing for doesThisNumberHaveRepeatedDigits function
 // const testNumbers = [1234, 1234321, 1934520, 123456789, 111111];
-// //const testNumbers = [601314, 1234567890];
+// // //const testNumbers = [601314, 1234567890];
 
 // for (let i = 0; i < testNumbers.length; i++) {
 //     console.log(`\n\nthe number is ${testNumbers[i]}`)
@@ -112,43 +153,19 @@ function testForPerfectSquare(p) {
 
 // }
 
-// for (let i = 123456789; i < 987654321; i++) {
-//  if (doesThisNumberHaveRepeatedDigits(i) === false) {
-//      if (testForPerfectSquare(i)) {
-//          console.log(`Smallest perfect square: ${i} (square of: ${Math.sqrt(i)})`);
-//          break;
-//      }
-//  }
-// }
-// // 139854276 (square of: 11826)
-
-
-// for (let i = 987654321; i > 123456789; i--) {
-//  if (doesThisNumberHaveRepeatedDigits(i) === false) {
-//      if (testForPerfectSquare(i)) {
-//          console.log(`Largest perfect square: ${i} (square of: ${Math.sqrt(i)})`);
-//          break;
-//      }
-//  }
-// }
-// 923187456 (square of: 30384)
-
-
 function doesThisNumberHaveRepeatedDigits(n) {
-
     const numberAsString = n.toString();
     const lastPositionToCheck = numberAsString.length - 1;  // don't need to check the last position since it didn't match any of the pervious digits
     
     for (let currentPosition = 0; currentPosition < lastPositionToCheck; currentPosition++) {
         const currentDigit = numberAsString.charAt(currentPosition);
-        const isThisARepeatDigit = numberAsString.indexOf(currentDigit, currentPosition + 1);
-        //console.log(`currentPosition is ${currentPosition}, currentDigit is ${currentDigit}, and is it found anywhere? ${isThisARepeatDigit}`);
-
-        if (isThisARepeatDigit > 0) {
+        const numberToCheckForRepeats = numberAsString.substring(currentPosition + 1);
+        //console.log(`currentPosition is ${currentPosition}, currentDigit is ${currentDigit}, and will it be found in here: ${numberToCheckForRepeats}`);
+        
+        if (numberToCheckForRepeats.includes(currentDigit)) {
             return true;
         }
     }
-    
     return false;
 }
 
