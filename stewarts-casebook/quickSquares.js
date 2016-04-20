@@ -101,24 +101,39 @@ function testForPerfectSquare(p) {
 
 // Find the roots first, and then check if the square contains every digit from 1-9
 function method3() {
+    // currently this solution assumes there's an answer, which there might not be.
 
-    let foundPerfectSquare = false;
-    const smallestRoot = Math.sqrt(123456789);
-    let testRoot = Math.floor(smallestRoot);
+    let smallestPerfectSquare;
+    let largestPerfectSquare;
     let testSquare;
+    let testRoot;
 
-    while(foundPerfectSquare === false) {
+    const smallestRoot = Math.sqrt(123456789);
+    testRoot = Math.floor(smallestRoot);
+
+    while (smallestPerfectSquare === undefined) {
         testRoot++;
-        testSquare = testRoot * testRoot;
-        //console.log(`the test is: ${testRoot}, the square is: ${testSquare}`)
+        testSquare = Math.pow(testRoot, 2);
+        //console.log(`the test is: ${testRoot}, the square is: ${testSquare}`);
         if (doesThisNumberHaveRepeatedDigits(testSquare) === false) {
-            foundPerfectSquare = true;
+            smallestPerfectSquare = testSquare;
         }
-
     }
 
-    console.log(`I think ${testSquare} is the smallest perfect square with all the numbers from 1 to 9`);
 
+    const largestRoot = Math.sqrt(987654321);
+    testRoot = Math.ceil(largestRoot);
+
+    while (largestPerfectSquare === undefined) {
+        testRoot--;
+        testSquare = Math.pow(testRoot, 2);
+        //console.log(`the test is: ${testRoot}, the square is: ${testSquare}`);
+        if (doesThisNumberHaveRepeatedDigits(testSquare) === false) {
+            largestPerfectSquare = testSquare;
+        }
+    }
+
+    console.log(`I think ${smallestPerfectSquare} is the smallest perfect square and ${largestPerfectSquare} is the largest perfect square with all the numbers from 1 to 9`);
 }
 
 
@@ -154,7 +169,7 @@ function method1() {
         console.log(`The smallest prefect square is ${smallestPerfectSquare} (which is a square of ${Math.sqrt(smallestPerfectSquare)}).`); 
         console.log(`The largest perfect square is ${largestPerfectSquare} (which is a square of ${Math.sqrt(largestPerfectSquare)}).`);
     } else {
-        console.log(`Could not find any perfect squares `)
+        console.log(`Could not find any perfect squares :(`);
     }
 }
 
@@ -203,7 +218,7 @@ Smallest:
 Biggest: 
 923187456
 923187456
-
+923187456
 
 */
 
