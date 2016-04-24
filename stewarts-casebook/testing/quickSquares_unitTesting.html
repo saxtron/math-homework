@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Unit Testing for quickSquares.js</title>
+    <link rel="stylesheet" href="https://code.jquery.com/qunit/qunit-1.23.1.css">
+</head>
+<body>
+    <div id="qunit"></div>
+    <div id="qunit-fixture"></div>
+    <script src="https://code.jquery.com/qunit/qunit-1.23.1.js"></script>
+    <script src="../quickSquares.js"></script>
+    <script>
+        
+        // Testing doesThisNumberHaveRepeatedDigits() function
+        QUnit.test("Testing doesThisNumberHaveRepeatedDigits function with single digits", function(assert) {
+            assert.notOk(distinctDigitPerfectSquareFinder.doesThisNumberHaveRepeatedDigits(1), "Testing 1");
+            assert.notOk(distinctDigitPerfectSquareFinder.doesThisNumberHaveRepeatedDigits(2), "Testing 1");
+            assert.notOk(distinctDigitPerfectSquareFinder.doesThisNumberHaveRepeatedDigits(3), "Testing 1");
+            assert.notOk(distinctDigitPerfectSquareFinder.doesThisNumberHaveRepeatedDigits(4), "Testing 1");
+            assert.notOk(distinctDigitPerfectSquareFinder.doesThisNumberHaveRepeatedDigits(5), "Testing 1");
+            assert.notOk(distinctDigitPerfectSquareFinder.doesThisNumberHaveRepeatedDigits(6), "Testing 1");
+            assert.notOk(distinctDigitPerfectSquareFinder.doesThisNumberHaveRepeatedDigits(7), "Testing 1");
+            assert.notOk(distinctDigitPerfectSquareFinder.doesThisNumberHaveRepeatedDigits(8), "Testing 1");
+            assert.notOk(distinctDigitPerfectSquareFinder.doesThisNumberHaveRepeatedDigits(9), "Testing 1");
+            assert.notOk(distinctDigitPerfectSquareFinder.doesThisNumberHaveRepeatedDigits(0), "Testing 1");
+        });
+
+        QUnit.test("Test numbers that have repeated digits", function(assert) {
+            assert.ok(distinctDigitPerfectSquareFinder.doesThisNumberHaveRepeatedDigits(12341), "Passed!" );
+            assert.ok(distinctDigitPerfectSquareFinder.doesThisNumberHaveRepeatedDigits(123454321), "Passed!" );
+            assert.ok(distinctDigitPerfectSquareFinder.doesThisNumberHaveRepeatedDigits(7777777), "Passed!" );
+            assert.ok(distinctDigitPerfectSquareFinder.doesThisNumberHaveRepeatedDigits(99), "Passed!" );
+        });
+
+        QUnit.test("Test numbers that don't have repeated digits", function(assert) {
+            assert.notOk(distinctDigitPerfectSquareFinder.doesThisNumberHaveRepeatedDigits(1234567890), "Passed!" );
+            assert.notOk(distinctDigitPerfectSquareFinder.doesThisNumberHaveRepeatedDigits(1234), "Passed!" );
+            assert.notOk(distinctDigitPerfectSquareFinder.doesThisNumberHaveRepeatedDigits(123456789), "Passed!" );
+            assert.notOk(distinctDigitPerfectSquareFinder.doesThisNumberHaveRepeatedDigits(74925), "Passed!" );
+            assert.notOk(distinctDigitPerfectSquareFinder.doesThisNumberHaveRepeatedDigits(2048193657), "Passed!" );
+            assert.notOk(distinctDigitPerfectSquareFinder.doesThisNumberHaveRepeatedDigits(98), "Passed!" );
+        });
+
+
+        // Testing testForPerfectSquare() function
+        QUnit.test("Test numbers that are perfect Squares", function(assert) {
+            assert.ok(distinctDigitPerfectSquareFinder.testForPerfectSquare(1), "Passed!" );
+            assert.ok(distinctDigitPerfectSquareFinder.testForPerfectSquare(4), "Passed!" );
+            assert.ok(distinctDigitPerfectSquareFinder.testForPerfectSquare(9), "Passed!" );
+            assert.ok(distinctDigitPerfectSquareFinder.testForPerfectSquare(16), "Passed!" );
+            assert.ok(distinctDigitPerfectSquareFinder.testForPerfectSquare(25), "Passed!" );
+            assert.ok(distinctDigitPerfectSquareFinder.testForPerfectSquare(15129), "Passed!" );
+        });
+
+    </script>
+</body>
+</html>
