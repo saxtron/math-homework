@@ -2,26 +2,42 @@
 // 
 "use strict"
 
-//ad in so
-//is do an
-//no as id
+let A, D, O, N, I, S;
+let adonisSquare = [
+    [ [`A`, `D`], [`I`, `N`], [`S`, `O`] ],
+    [ [`I`, `S`], [`D`, `O`], [`A`, `N`] ],
+    [ [`N`, `O`], [`A`, `S`], [`I`, `D`] ]
+];
+let possibleSolutionSet = {
+    A: null,
+    D: null,
+    O: null,
+    N: null,
+    I: null,
+    S: null
+}
 
-let a, d, o, n, i, s;
-let adonisSquare;
 
 const numberOfCells = 9;
 
-for (a = 0; a < numberOfCells; a++) {
-    for (d = 0; d < numberOfCells; d++) {
-        for (o = 0; o < numberOfCells; o++) {
-            for (n = 0; n < numberOfCells; n++) {
-                for (i = 0; i < numberOfCells; i++) {
-                    for (s = 0; s < numberOfCells; s++) {
-                        adonisSquare = [
-                            [ [a, d], [i, n], [s, o] ],
-                            [ [i, s], [d, o], [a, n] ],
-                            [ [n, o], [a, s], [i, d] ]
-                        ];
+let totalSolutionsFound = 0;
+
+// this solution finds permutations, but I'd be fine with combinations (or A single combination)
+// but wait, it doesn't find ALL permuations, just some.
+
+
+for (A = 0; A < numberOfCells; A++) {
+    possibleSolutionSet[`A`] = A;
+    for (D = 0; D < numberOfCells; D++) {
+        possibleSolutionSet[`D`] = D;
+        for (O = 0; O < numberOfCells; O++) {
+            possibleSolutionSet[`O`] = O;
+            for (N = 0; N < numberOfCells; N++) {
+                possibleSolutionSet[`N`] = N;
+                for (I = 0; I < numberOfCells; I++) {
+                    possibleSolutionSet[`I`] = I;
+                    for (S = 0; S < numberOfCells; S++) {
+                        possibleSolutionSet[`S`] = S;
                         checkMagicSquare();
                     }
                 }  
@@ -29,6 +45,13 @@ for (a = 0; a < numberOfCells; a++) {
         }
     }
 }
+
+// for (adonis_A = 0; adonis_A < numberOfCells; adonis_A++) {
+//     for (adonis_D = 0; adonis_D < numberOfCells; adonis_D++) {
+//         for (adonis_O = 0; adonis_O < numberOfCells; adonis_O++) {
+//             for (adonis_N = 0; adonis_N < numberOfCells; adonis_N++) {
+//                 for (adonis_I = 0; adonis_I < numberOfCells; adonis_I++) {
+//                     for (adonis_S = 0; adonis_S < numberOfCells; adonis_S++) 
 
 
 
@@ -50,10 +73,22 @@ function checkMagicSquare() {
 
         }
     }
-
-    console.log(`We did it: ${a} ${d} ${o} ${n} ${i} ${s}`);
+    totalSolutionsFound++;
+    console.log(`We did it (${totalSolutionsFound}): ${a} ${d} ${o} ${n} ${i} ${s}`);
 }
 
-// We did it: 0 3 2 0 1 6
+//ad in so
+//is do an
+//no as id
+
+// Book's answer: a=0 d=3 o=2 n=0 i=1 s=6
+// 3  1  8
+// 7  5  0
+// 2  6  4
+
+// another potential: a=3, d=2, o=0, n=0, i=6, s=1
+// 5  6  1
+// 7  2  3
+// 0  4  8
 
 
