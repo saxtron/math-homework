@@ -1,68 +1,44 @@
 // p.20 - Adonis Asteroid Mousterian
 // 
 "use strict"
-
-let A, D, O, N, I, S;
-let adonisSquare = [
-    [ [`A`, `D`], [`I`, `N`], [`S`, `O`] ],
-    [ [`I`, `S`], [`D`, `O`], [`A`, `N`] ],
-    [ [`N`, `O`], [`A`, `S`], [`I`, `D`] ]
-];
-let possibleSolutionSet = {
-    A: null,
-    D: null,
-    O: null,
-    N: null,
-    I: null,
-    S: null
-}
-
-
-const numberOfCells = 9;
-
 let totalSolutionsFound = 0;
 
-// this solution finds permutations, but I'd be fine with combinations (or A single combination)
-// but wait, it doesn't find ALL permuations, just some.
+let adonis = {
+    square: [
+        [ [`A`, `D`], [`I`, `N`], [`S`, `O`] ],
+        [ [`I`, `S`], [`D`, `O`], [`A`, `N`] ],
+        [ [`N`, `O`], [`A`, `S`], [`I`, `D`] ]
+    ]
+};
+const numberOfCells = adonis.square.length * adonis.square[0].length;
+//console.log(`${numberOfCells}`);
 
 
-for (A = 0; A < numberOfCells; A++) {
-    possibleSolutionSet[`A`] = A;
-    for (D = 0; D < numberOfCells; D++) {
-        possibleSolutionSet[`D`] = D;
-        for (O = 0; O < numberOfCells; O++) {
-            possibleSolutionSet[`O`] = O;
-            for (N = 0; N < numberOfCells; N++) {
-                possibleSolutionSet[`N`] = N;
-                for (I = 0; I < numberOfCells; I++) {
-                    possibleSolutionSet[`I`] = I;
-                    for (S = 0; S < numberOfCells; S++) {
-                        possibleSolutionSet[`S`] = S;
+
+
+// make a recursive function for this.
+for (adonis.A = 0; adonis.A < numberOfCells; adonis.A++) {
+    for (adonis.D = 0; adonis.D < numberOfCells; adonis.D++) {
+        for (adonis.O = 0; adonis.O < numberOfCells; adonis.O++) {
+            for (adonis.N = 0; adonis.N < numberOfCells; adonis.N++) {
+                for (adonis.I = 0; adonis.I < numberOfCells; adonis.I++) {
+                    for (adonis.S = 0; adonis.S < numberOfCells; adonis.S++) {
                         checkMagicSquare();
                     }
-                }  
+                }
             }
         }
     }
 }
-
-// for (adonis_A = 0; adonis_A < numberOfCells; adonis_A++) {
-//     for (adonis_D = 0; adonis_D < numberOfCells; adonis_D++) {
-//         for (adonis_O = 0; adonis_O < numberOfCells; adonis_O++) {
-//             for (adonis_N = 0; adonis_N < numberOfCells; adonis_N++) {
-//                 for (adonis_I = 0; adonis_I < numberOfCells; adonis_I++) {
-//                     for (adonis_S = 0; adonis_S < numberOfCells; adonis_S++) 
 
 
 
 function checkMagicSquare() {
     let checker = [false, false, false, false, false, false, false, false, false];
 
-    //console.log(`checkMagicSquare`);
-
-    for (let z = 0; z < adonisSquare.length; z++) {
-        for (let y = 0; y < adonisSquare[z].length; y++) {
-            const cellTotal = adonisSquare[z][y][0] + adonisSquare[z][y][1];
+    for (let z = 0; z < adonis.square.length; z++) {
+        for (let y = 0; y < adonis.square[0].length; y++) {
+            const cellTotal = adonis[adonis.square[z][y][0]] + adonis[adonis.square[z][y][1]];
             //console.log(`${adonisSquare[z][y][0]} plus ${adonisSquare[z][y][1]} is ${cellTotal}`);
             if (checker[cellTotal] === false) {
                 checker[cellTotal] = true;
@@ -74,7 +50,7 @@ function checkMagicSquare() {
         }
     }
     totalSolutionsFound++;
-    console.log(`We did it (${totalSolutionsFound}): ${a} ${d} ${o} ${n} ${i} ${s}`);
+    console.log(`We did it (${totalSolutionsFound}): ${adonis.A} ${adonis.D} ${adonis.O} ${adonis.N} ${adonis.I} ${adonis.S}`);
 }
 
 //ad in so
