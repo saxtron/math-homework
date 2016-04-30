@@ -1,29 +1,28 @@
 // p.20 - Adonis Asteroid Mousterian
 // 
 "use strict"
-let totalSolutionsFound = 0;
 
 let adonis = {
     square: [
-        [ [`A`, `D`], [`I`, `N`], [`S`, `O`] ],
-        [ [`I`, `S`], [`D`, `O`], [`A`, `N`] ],
-        [ [`N`, `O`], [`A`, `S`], [`I`, `D`] ]
-    ]
+        [ `AD`, `IN`, `SO` ],
+        [ `IS`, `DO`, `AN` ],
+        [ `NO`, `AS`, `ID` ]
+    ],
+    A: 0, D: 0, O: 0, N: 0, I: 0, S: 0
 };
+
 const numberOfCells = adonis.square.length * adonis.square[0].length;
-//console.log(`${numberOfCells}`);
-
-
+let totalSolutionsFound = 0;
 
 
 // make a recursive function for this.
 for (adonis.A = 0; adonis.A < numberOfCells; adonis.A++) {
     for (adonis.D = 0; adonis.D < numberOfCells; adonis.D++) {
-        for (adonis.O = 0; adonis.O < numberOfCells; adonis.O++) {
-            for (adonis.N = 0; adonis.N < numberOfCells; adonis.N++) {
-                for (adonis.I = 0; adonis.I < numberOfCells; adonis.I++) {
-                    for (adonis.S = 0; adonis.S < numberOfCells; adonis.S++) {
-                        checkMagicSquare();
+        for (adonis.O = 0 ; adonis.O < numberOfCells; adonis.O++) {
+            for (adonis.N = 0 ; adonis.N < numberOfCells; adonis.N++) {
+                for (adonis.I = 0 ; adonis.I < numberOfCells; adonis.I++) {
+                    for (adonis.S = 0 ; adonis.S < numberOfCells; adonis.S++) {
+                        checkMagicSquare(adonis);
                     }
                 }
             }
@@ -32,26 +31,31 @@ for (adonis.A = 0; adonis.A < numberOfCells; adonis.A++) {
 }
 
 
+function checkMagicSquare(magicSquare) {
+    if (checkAllNumbersAreUsed(magicSquare)) {
+        totalSolutionsFound++;
+        console.log(`We really did it (${totalSolutionsFound}): ${magicSquare.A} ${magicSquare.D} ${magicSquare.O} ${magicSquare.N} ${magicSquare.I} ${magicSquare.S}`);
+    }
+}
 
-function checkMagicSquare() {
+function checkAllNumbersAreUsed(magicSquare) {
     let checker = [false, false, false, false, false, false, false, false, false];
 
-    for (let z = 0; z < adonis.square.length; z++) {
-        for (let y = 0; y < adonis.square[0].length; y++) {
-            const cellTotal = adonis[adonis.square[z][y][0]] + adonis[adonis.square[z][y][1]];
-            //console.log(`${adonisSquare[z][y][0]} plus ${adonisSquare[z][y][1]} is ${cellTotal}`);
+    for (let i = 0; i < magicSquare.square.length; i++) {
+        for (let j = 0; j < magicSquare.square[0].length; j++) {
+            const cellTotal = magicSquare[magicSquare.square[i][j].charAt(0)] + magicSquare[magicSquare.square[i][j].charAt(1)];
             if (checker[cellTotal] === false) {
                 checker[cellTotal] = true;
             } else {
-                //console.log(`No dice: ${a} ${d} ${o} ${n} ${i} ${s}`);
                 return false;
             }
-
         }
     }
-    totalSolutionsFound++;
-    console.log(`We did it (${totalSolutionsFound}): ${adonis.A} ${adonis.D} ${adonis.O} ${adonis.N} ${adonis.I} ${adonis.S}`);
+    return true;
 }
+
+
+
 
 //ad in so
 //is do an
